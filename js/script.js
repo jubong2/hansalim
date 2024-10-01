@@ -26,6 +26,11 @@ window.addEventListener("load", function () {
       // 추천물품
       RECOMMEND_GOOD = obj.recommendgood;
       //   console.log(VISUAL_ARR);
+      // 인기물품
+      // 아이콘
+      POPULAR_ICON = obj.popularicon;
+      // 목록
+      POPULAR_GOOD = obj.populargood;
       // ================
       // 비주얼을 화면에 배치
       showVisual();
@@ -37,6 +42,10 @@ window.addEventListener("load", function () {
       showNewGood();
       // 추천물품 화면 배치
       showRecommendGood();
+      // 인기물품 아이콘 화면배치
+      showPopularIcon();
+      // 인기물품 목록 화면배치
+      showPopularGood();
     }
   };
   //   자료호출
@@ -61,6 +70,14 @@ window.addEventListener("load", function () {
   // 추천물품
   let RECOMMEND_GOOD;
   let recommendTag = this.document.getElementById("data-recommend");
+  // 인기물품 아이콘
+  let POPULAR_ICON;
+  let popularIConTag = this.document.getElementById("data-popular-icon");
+  // 인기물품 목록
+  let POPULAR_GOOD;
+  // json파일중에 인텍스번호 0을 할당
+  let popularShow = 1;
+  let popularGoodTag = this.document.getElementById("data-popular");
   // ==============================================
   // 비주얼 화면 출력 기능
   function showVisual() {
@@ -278,9 +295,9 @@ window.addEventListener("load", function () {
     <div class="swiper sw-recommend">
    <div class="swiper-wrapper">
    `;
-   RECOMMEND_GOOD.forEach(function (item) {
-       // console.log(item);
-       let tag = `
+    RECOMMEND_GOOD.forEach(function (item) {
+      // console.log(item);
+      let tag = `
      <div class= "swiper-slide">
  <div class="good-box">
  <!-- 제품이미지 -->
@@ -301,31 +318,100 @@ window.addEventListener("load", function () {
  </div>
  </div>
      `;
-       html += tag;
-     });
-     // console.log(html);
- 
-     html += `
+      html += tag;
+    });
+    // console.log(html);
+
+    html += `
      </div>
      </div>
      `;
-     // console.log(html);
-     recommendTag.innerHTML = html;
-     // swiper 기능
-     const sRecommend = new Swiper(".sw-recommend", {
-       slidesPerView: 3, // 보여지는 슬라이드 개수
-       spaceBetween: 16, // 슬라이드 간의 간격
-       slidesPerGroup: 3, // 넘어가는 슬라이드 개수
-       navigation: {
-         prevEl: ".recommend .slide-prev",
-         nextEl: ".recommend .slide-next",
-       },
-       pagination: {
-         // 페이지 수 출력됨.
-         el: ".recommend .slide-pg",
-         type: "fraction", // type을 하지 않으면 점으로 나옴.
-       },
-     });
+    // console.log(html);
+    recommendTag.innerHTML = html;
+    // swiper 기능
+    const sRecommend = new Swiper(".sw-recommend", {
+      slidesPerView: 3, // 보여지는 슬라이드 개수
+      spaceBetween: 16, // 슬라이드 간의 간격
+      slidesPerGroup: 3, // 넘어가는 슬라이드 개수
+      navigation: {
+        prevEl: ".recommend .slide-prev",
+        nextEl: ".recommend .slide-next",
+      },
+      pagination: {
+        // 페이지 수 출력됨.
+        el: ".recommend .slide-pg",
+        type: "fraction", // type을 하지 않으면 점으로 나옴.
+      },
+    });
+  }
+  // 인기물품 화면 출력 기능
+  function showPopularIcon() {
+    let html = `
+    <div class = "swiper sw-icon"> 
+    <div class ="swiper-wrapper">
+       `;
+    //  데이터 처리
+    POPULAR_ICON.forEach(function (item) {
+      // console.log(item);
+      const tag = `
+    <div class = "swiper-slide">
+<a href = "${item.link}">
+    <span class = "popular-cate-icon"
+    style = "
+    background : url('images/${item.icon}') no-repeat;
+    background-position : 0px 0px;">
+    </span>
+    <span class = "popular-cate-name">${item.txt}</span>
+</a>
+</div>
+      `;
+      html += tag;
+    });
+    html += `
+    </div>
+    </div>
+    `;
+    popularIConTag.innerHTML = html;
+    const swIcon = new Swiper(".sw-icon", {
+      slidesPerView: 7, // 보여지는 슬라이드 개수
+      spaceBetween: 10, // 슬라이드 간의 간격
+      slidesPerGroup: 7, // 넘어가는 슬라이드 개수
+      navigation: {
+        prevEl: ".popular-cate .popular-slide-prev",
+        nextEl: ".popular-cate .popular-slide-next",
+      },
+    });
+  }
+  // 인기물품 화면 출력 기능
+  function showPopularGood() {
+    let html = "";
+    let popCate = "populargood-" + (popularShow + 1); //인덱스 번호에 계속 +1을 한다
+    // console.log(POPULAR_GOOD[popCate]);
+    // console.log(popCate);
+    POPULAR_GOOD[popCate].forEach(function (item) {
+      // console.log(item);
+
+      // 여러개이므로 foreach
+      let tag = `
+ <div class="good-box">
+ <!-- 제품이미지 -->
+ <a href="${item.link}" class="good-img">
+     <img src="images/${item.pic}" alt="${item.name}" />
+     <span class="good-type">${item.tag}</span>
+ </a>
+ <!-- 제품정보 -->
+ <a href="${item.link}" class="good-info">
+     <em>${item.name}</em>(<em>${item.unit}</em>)
+ </a>
+ <!-- 제품가격 -->
+ <a href="${item.link}" class="good-info-price">${priceToString(item.price)}<em>원</em></a>
+ <!-- 장바구니 -->
+ <button class="good-add-cart"></button>
+ </div>
+ `;
+      html += tag;
+      popularGoodTag.innerHTML = html;
+    });
   }
   //   ==========================end
 });
