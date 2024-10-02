@@ -76,7 +76,7 @@ window.addEventListener("load", function () {
   // 인기물품 목록
   let POPULAR_GOOD;
   // json파일중에 인텍스번호 0을 할당
-  let popularShow = 1;
+  let popularShow = 0;
   let popularGoodTag = this.document.getElementById("data-popular");
   // ==============================================
   // 비주얼 화면 출력 기능
@@ -381,6 +381,44 @@ window.addEventListener("load", function () {
         nextEl: ".popular-cate .popular-slide-next",
       },
     });
+    // 아이콘에 클릭했을때 해당하는 목록 이벤트
+    const tag = document.querySelectorAll(".popular-slide a");
+    tag[0].style.border =
+      "2px solid #76bd42"; /*  let popularShow = 0;의 숫자와 같아야함*/
+
+    tag.forEach(function (item, index) {
+      // console.log(item, index);
+      // 아이콘에 호바했을 때
+      item.addEventListener("mouseover", function () {
+        const spanTag = this.querySelector(".popular-cate-icon");
+        spanTag.style.backgroundPositionY = "-64px";
+      });
+      item.addEventListener("mouseleave", function () {
+        const spanTag = this.querySelector(".popular-cate-icon");
+        spanTag.style.backgroundPositionY = "0px";
+      });
+      // 아이콘에 클릭했을 떄 목록 변경
+      item.addEventListener("click", function (e) {
+        e.preventDefault();
+        // alert("클릭");
+        // 물품 더보기 이름바꾸기
+        const bt = document.querySelector(".popular-more");
+        const title = this.querySelector(".popular-cate-name");
+        // console.log(title);
+        bt.innerHTML = `${title.innerHTML}물품 더보기`;
+        // 클릭한 아이콘의 테두리변경
+        tag.forEach(function (item) {
+          item.style.border = "none";
+        });
+        this.style.backgroundColor = "#fff";
+        this.style.border = "2px solid #76bd42";
+        // 아이콘에 해당하는 목록이 출력되야함
+        popularShow = index;
+        showPopularGood();
+      });
+    });
+
+    // ======================
   }
   // 인기물품 화면 출력 기능
   function showPopularGood() {
@@ -404,7 +442,9 @@ window.addEventListener("load", function () {
      <em>${item.name}</em>(<em>${item.unit}</em>)
  </a>
  <!-- 제품가격 -->
- <a href="${item.link}" class="good-info-price">${priceToString(item.price)}<em>원</em></a>
+ <a href="${item.link}" class="good-info-price">${priceToString(
+        item.price
+      )}<em>원</em></a>
  <!-- 장바구니 -->
  <button class="good-add-cart"></button>
  </div>
