@@ -89,16 +89,16 @@
   margin-bottom: 10px;
 }
 /* 홀수를 왼쪽 */
-.new-right .new-box:nth-child(2n + 1){
+.new-right .new-box:nth-child(2n + 1) {
   float: left;
 }
 /* 짝수를 오른쪽 */
-.new-right .new-box:nth-child(2n){
+.new-right .new-box:nth-child(2n) {
   float: right;
 }
 
 /* 추천물품 */
-.recommend{
+.recommend {
   position: relative;
   display: block;
   background-color: #fff8fa;
@@ -112,4 +112,113 @@
 
 .blue {
   color: #76bd42;
+}
+
+/* 브랜드관 */
+.brand {
+  position: relative;
+  display: block;
+  background-color: #f3f3f0;
+}
+
+.brand .slide-control {
+  margin-top: 25px;
+}
+
+.brand-slide {
+  position: relative;
+  display: block;
+}
+
+.brand-box {
+  position: relative;
+  display: block;
+  width: 285px;
+  height: 285px;
+  background-color: #fff;
+  padding: 35px 30px;
+}
+.brand-box a {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.brand-box a img {
+  position: relative;
+  display: inline-block;
+}
+
+.brand-box a p {
+  position: relative;
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.brand-info {
+  position: relative;
+  display: block;
+}
+
+.brand-info > li {
+  position: relative;
+  display: block;
+  width: 50%;
+  border-right: 1px solid #e3e3e3;
+  float: left;
+}
+.brand-info > li:last-child {
+  border: none;
+}
+
+.brand .section-bt {
+  margin-top: 20px;
+}
+.banner {
+  position: relative;
+  display: block;
+  padding-bottom: 0;
+}
+.banner-slide {
+  position: relative;
+  display: block;
+}
+
+.banner-slide a {
+  position: relative;
+  display: block;
+}
+
+.banner .slide-prev,
+.banner .slide-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  width: 19px;
+  height: 34px;
+  cursor: pointer;
+  border: 0;
+  z-index: 9;
+}
+
+.banner .slide-prev {
+  background: url("../images/banner_arrow.png") no-repeat;
+  background-position: 0 -34px;
+  left: 20px;
+}
+
+.banner .slide-next {
+  right: 20px;
+  background: url("../images/banner_arrow.png") no-repeat;
+  transform: translateY(-50%) rotateY(180deg);
+  background-position: 0 -34px;
+}
+
+.banner .slide-prev:hover,
+.banner .slide-next:hover {
+  background-position: 0 0;
 }
