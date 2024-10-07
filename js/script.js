@@ -35,7 +35,9 @@ window.addEventListener("load", function () {
       BRAND_ARR = obj.brandarr;
       // 배너
       BANNER_ARR = obj.bannerarr;
-      // ==================================================================
+      // 제철요리
+      SEASON_GOOD = obj.seasongood;
+      // ================
       // 비주얼을 화면에 배치
       showVisual();
       //오늘의 물품 화면에 배치
@@ -50,10 +52,12 @@ window.addEventListener("load", function () {
       showPopularIcon();
       // 인기물품 목록 화면배치
       showPopularGood();
-      // 브랜드관 목록 화면배치
+      // 브랜드관 화면배치
       showBrandArr();
-      // 배너목록 화면배치
+      // 배너 화면배치
       showBannerArr();
+      // 제철요리 화면배치
+      showSeasonGood();
     }
   };
   //   자료호출
@@ -86,12 +90,15 @@ window.addEventListener("load", function () {
   // json파일중에 인텍스번호 0을 할당
   let popularShow = 1;
   let popularGoodTag = this.document.getElementById("data-popular");
-  // 브랜드 물품 목록
+  // 브랜드관 목록
   let BRAND_ARR;
   let brandTag = this.document.getElementById("data-brand");
   // 배너 목록
   let BANNER_ARR;
   let bannerTag = this.document.getElementById("data-banner");
+  // 제철요리 목록
+  let SEASON_GOOD;
+  let seosonTag = this.document.getElementById("data-season");
   // ==============================================
   // 비주얼 화면 출력 기능
   function showVisual() {
@@ -397,45 +404,63 @@ window.addEventListener("load", function () {
     });
     // 아이콘에 클릭했을때 해당하는 목록 이벤트
     const tag = document.querySelectorAll(".popular-slide a");
+
+    // 첫 번째 아이콘 활성화
     tag[1].style.border = "2px solid #76bd42";
+    tag[1].style.backgroundColor = "#fff"; // 배경색을 흰색으로 설정
     const firstIconSpanTag = tag[1].querySelector(".popular-cate-icon");
     if (firstIconSpanTag) {
       firstIconSpanTag.style.backgroundPositionY = "-64px";
+      firstIconSpanTag.classList.add("active"); // 첫 번째 아이콘은 처음부터 활성화 상태
     }
+
     tag.forEach(function (item, index) {
-      // console.log(item,index);
-      //아이콘에 호버했을때 이미지 변경
+      // 아이콘에 호버했을 때 이미지 변경
       item.addEventListener("mouseover", function () {
         const spanTag = this.querySelector(".popular-cate-icon");
-        if (!spanTag.classList.contains("ative")) {
+        if (!spanTag.classList.contains("active")) {
           spanTag.style.backgroundPositionY = "-64px";
+          this.style.backgroundColor = "#fff"; // 호버 시 배경색을 흰색으로 설정
+          this.style.border = "2px solid #76bd42"; // 호버 시 테두리 색상 변경
         }
       });
+
+      // 마우스가 아이콘에서 벗어났을 때 원래 이미지로 변경
       item.addEventListener("mouseleave", function () {
         const spanTag = this.querySelector(".popular-cate-icon");
         if (!spanTag.classList.contains("active")) {
-          // 클릭된 아이콘이 아닌 경우에만 원래 이미지로
           spanTag.style.backgroundPositionY = "0px";
+          this.style.backgroundColor = ""; // 원래 배경색으로 복원
+          this.style.border = "none"; // 원래 테두리로 복원
+        }
+        // tag[1]에 대해서는 마우스 리브 동작 무시
+        // tag[1]이 활성화 상태가 아니면 마우스 리브 기능 적용
+        if (item === tag[1] && spanTag.classList.contains("active")) {
+          return; // tag[1]이 활성화 상태면 무시
         }
       });
-      // 아이콘에 클릭했을때 목록 변경
+
+      // 아이콘 클릭 시 목록 변경 및 스타일 업데이트
       item.addEventListener("click", function (e) {
         e.preventDefault();
-        // alert("click")
-        // 물품더보기 이름 변경
+
+        // "물품 더보기" 이름 변경
         const bt = document.querySelector(".popular-more");
         const title = this.querySelector(".popular-cate-name");
-        // console.log(title);
         bt.innerHTML = `${title.innerHTML} 물품 더보기 `;
-        // 클릭된 아이콘의 테두리변경
+
+        // 클릭된 아이콘의 스타일 업데이트
         tag.forEach(function (item) {
           item.style.border = "none";
           const otherSpanTag = item.querySelector(".popular-cate-icon");
           if (otherSpanTag) {
             otherSpanTag.style.backgroundPositionY = "0px";
+            item.style.backgroundColor = "#f9f9f9";
             otherSpanTag.classList.remove("active");
           }
         });
+
+        // 현재 클릭된 아이콘을 활성화
         this.style.backgroundColor = "#fff";
         this.style.border = "2px solid #76bd42";
         const spanTag = this.querySelector(".popular-cate-icon");
@@ -443,8 +468,9 @@ window.addEventListener("load", function () {
           spanTag.style.backgroundPositionY = "-64px";
           spanTag.classList.add("active");
         }
+
+        // 아이콘에 해당하는 목록 출력
         popularShow = index;
-        //아이콘에 해당하는 목록이 출력
         showPopularGood();
       });
     });
@@ -473,7 +499,9 @@ window.addEventListener("load", function () {
      <em>${item.name}</em>(<em>${item.unit}</em>)
  </a>
  <!-- 제품가격 -->
- <a href="${item.link}" class="good-info-price">${priceToString(item.price)}<em>원</em></a>
+ <a href="${item.link}" class="good-info-price">${priceToString(
+        item.price
+      )}<em>원</em></a>
  <!-- 장바구니 -->
  <button class="good-add-cart"></button>
  </div>
@@ -486,29 +514,29 @@ window.addEventListener("load", function () {
   function showBrandArr() {
     let html = `
     <div class="swiper sw-brand">
-    <div class="swiper-wrapper">
-    `;
+      <div class="swiper-wrapper">
+   `;
     BRAND_ARR.forEach(function (item) {
       // console.log(item);
       let tag = `
       <div class="swiper-slide">
-      <div class="brand-box">
-          <a href="${item.link}">
+              <div class="brand-box">
+                  <a href="${item.link}">
                       <img src="images/${item.pic}" alt="${item.name}"/>
-              <p>${item.name}</p>
-              <ul class="brand-info clearfix">
-                  <li>
-                      <span class="brand-info-title">${item.title1}</span>
-                      <span class="brand-info-value">${item.value1}</span>
-                  </li>
-                  <li>
-                      <span class="brand-info-title">${item.title2}</span>
-                      <span class="brand-info-value">${item.value2}</span>
-                  </li>
-              </ul>
-          </a>
-      </div>
-      </div>
+                      <p>${item.name}</p>
+                      <ul class="brand-info clearfix">
+                          <li>
+                              <span class="brand-info-title">${item.title1}</span>
+                              <span class="brand-info-value">${item.value1}</span>
+                          </li>
+                          <li>
+                              <span class="brand-info-title">${item.title2}</span>
+                              <span class="brand-info-value">${item.value2}</span>
+                          </li>
+                      </ul>
+                  </a>
+              </div>
+          </div>
       `;
       html += tag;
     });
@@ -534,26 +562,26 @@ window.addEventListener("load", function () {
   // 배너 화면 출력 기능
   function showBannerArr() {
     let html = `
-    <div class = "swiper sw-banner">
-    <div class = "swiper-wrapper">
+     <div class = "swiper sw-banner">
+  <div class = "swiper-wrapper">
     `;
     BANNER_ARR.forEach(function (item) {
       // console.log(item);
       let tag = `
       <div class="swiper-slide">
-        <a href="${item.link}">
-            <img src = "images/${item.image}" alt ="${item.title}"/>
-        </a>
-      </div>
-      `
-      html += tag
+            <a href="${item.link}">
+                <img src = "images/${item.image}" alt ="${item.title}"/>
+            </a>
+        </div>
+      `;
+      html += tag;
     });
     html += `
     </div>
     </div>
-    `
-    bannerTag.innerHTML = html
-    const swBanner = new Swiper(".sw-banner" , {
+    `;
+    bannerTag.innerHTML = html;
+    const swBanner = new Swiper(".sw-banner", {
       loop: true,
       autoplay: {
         delay: 2500,
@@ -564,7 +592,38 @@ window.addEventListener("load", function () {
         prevEl: ".banner .slide-prev",
         nextEl: ".banner .slide-next",
       },
-    })
+    });
+  }
+  // 제철요리 화면 출력 기능
+  function showSeasonGood() {
+    let html = "";
+    SEASON_GOOD.forEach(function (item, index) {
+      // console.log(item, index);
+      const tag = `
+        <li>
+                    <div class="season-good clearfix">
+                      <input type="checkbox" id="ch${index}" class="season-good-check season-item" value="${
+        item.price
+      }">
+                      <label for="ch${index}" class="season-label"></label>
+                      <a href="${item.link}" class="season-good-img">
+                        <img src="images/${item.pic}" alt="${item.title}">
+                      </a>
+                      <p class="season-good-info">
+                        <a href="${item.link}" class="season-good-title">${
+        item.title
+      }</a>
+                        <a href="${item.link}" class="season-good-price">
+                            <em>${priceToString(item.price)}</em>원
+                        </a>
+                      </p>
+                    </div>
+                   </li>
+      `;
+      html += tag;
+    });
+    seosonTag.innerHTML = html;
+    Scrollbar.initAll(); // smooth scrollbar 적용
   }
   //   ==========================end
 });

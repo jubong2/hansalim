@@ -109,3 +109,7 @@
   text-align: center;
   white-space: nowrap;
 }
+.brand-info-title {
+  display: block;
+}
+
