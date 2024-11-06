@@ -146,9 +146,6 @@
   background-position: 0px 0px;
 }
 
-.season-good-check:checked + .season-label {
-  background-position: 0px -36px;
-}
 .season-good-img {
   position: relative;
   display: block;
@@ -168,6 +165,7 @@
   position: relative;
   display: block;
   padding: 10px 20px;
+  /* background-color: burlywood; */
   float: left;
 }
 .season-good-title {
@@ -188,7 +186,13 @@
   font-style: normal;
   font-size: 20px;
 }
-
+.season-good-check:checked + .season-label {
+  background-position: 0px -36px;
+}
+.season-total {
+  position: relative;
+  display: block;
+}
 .season-good-total {
   position: relative;
   display: block;
@@ -197,19 +201,16 @@
   color: #333;
   margin: 30px 0;
 }
-
-.season-good-total em {
-  font-style: normal;
+.season-good-total em{
+    font-size: normal;
 }
-
-.buy-good {
-  position: relative;
-  display: block;
-  border: 1px solid #ddd;
-  font-size: 20px;
-  padding: 18px 0;
+.buy-good{
+    position: relative;
+    display: block;
+    border: 1px solid #ddd;
+    font-size: 20px;
+    padding: 18px 0;
 }
-
-.buy-good em {
-    font-style: normal;
+.buy-good em{
+    font-size: normal;
 }

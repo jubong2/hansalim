@@ -39,150 +39,61 @@ body {
   color: #000;
   height: 3000px;
 }
-.wrap {
+.wrap{
   position: relative;
   display: block;
-  padding-top: 128px;
-}
-/* 고정메뉴 */
-.fix-menu {
-  position: fixed;
-  top: 175px;
-  right: 0;
-  display: block;
-  width: 85px;
-  z-index: 99999;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 15px;
-  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 10%);
-  padding: 15px 10px 29px 10px;
-  overflow: hidden;
+  padding-top:128px ;
 }
 
-.fix-list {
-  position: relative;
-  display: block;
-}
-
-.fix-list > li {
-  position: relative;
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  text-align: center;
-  white-space: nowrap;
-  margin-bottom: 10px;
-}
-
-.fix-list > li > a {
-  position: relative;
-  display: block;
-}
-.fix-list > li > a::after {
-  content: "";
-  position: relative;
-  display: inline-block;
-  width: 36px;
-  height: 32px;
-  background: url("../images/icoFloating.png") no-repeat;
-}
-.fix-login::after {
-  background-position: 0 0;
-}
-.fix-shop::after {
-  background-position: 0 -32px !important;
-}
-.good-recent::after {
-  content: none !important;
-}
-.good-recent {
-  display: inline-block !important;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-}
-.good-recent img {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.fix-qa::after {
-  background-position: 0 calc(-32px * 2) !important;
-}
-.fix-talk::after {
-  background-position: 0 calc(-32px * 3) !important;
-}
-.fix-list > li span {
-  position: relative;
-  display: block;
-}
-
-.fix-top {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: block;
-  width: 100%;
-  line-height: 29px;
-  border: 0;
-  cursor: pointer;
-  font-size: 11px;
-  background-color: #000;
-  color: #fff;
-  text-transform: uppercase;
-}
 /* 공통요소 */
 .clearfix::after {
-  content: "";
-  position: relative;
-  display: block;
-  width: 100%;
-  clear: both;
-}
-
-.container {
-  position: relative;
-  display: block;
-  width: 1200px;
-  margin: 0 auto;
-}
-.wrap > section {
-  padding: 80px 0;
-}
-.section-title {
-  position: relative;
-  display: block;
-  font-size: 32px;
-  line-height: 40px;
-  color: #000;
-  font-weight: 400;
-  margin-bottom: 20px;
-}
-.section-title b {
-  font-weight: 700;
-}
-.section-bar {
-  padding-bottom: 15px;
-}
-.section-bar::after {
-  content: "";
+    content: "";
+    position: relative;
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+  
+  .container {
+    position: relative;
+    display: block;
+    width: 1200px;
+    margin: 0 auto;
+  }
+  .wrap > section{
+    padding: 80px 0;
+  }
+  .section-title {
+    position: relative;
+    display: block;
+    font-size: 32px;
+    line-height: 40px;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .section-title b {
+    font-weight: 700;
+  }
+  .section-bar{
+    padding-bottom: 15px;
+  }
+  .section-bar::after{
+    content: "";
   position: absolute;
   bottom: 0;
   left: 2px;
   background-color: #707070;
   width: 20px;
   height: 2px;
+  }
+  
+.section-title-txt {
+  position: relative;
+  display: block;
+  margin-bottom: 20px;
 }
 
-.section-title-txt {
-  font-size: 17px;
-  border-bottom: 2px solid #76bd42;
-  display: inline-block;
-  margin-bottom: 30px;
-}
 .section-bt {
   position: relative;
   display: block;
@@ -201,7 +112,7 @@ body {
   background: #f9f9f9;
 }
 /* swiper */
-.swiper {
+.swiper{
   width: 100%;
   height: 100%;
 }
@@ -272,4 +183,92 @@ body {
 .good-slide {
   position: relative;
   display: block;
+}
+/* 고정메뉴 */
+.fix-menu{
+  position: fixed;
+  top: 175px;
+  right: 0;
+  display: block;
+  width: 85px;
+  z-index: 99999;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 10%);
+  padding: 15px 10px 29px 10px;
+  overflow: hidden;
+}
+.fix-list{
+  position: relative;
+  display: block;
+}
+
+.fix-list > li{
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.fix-list > li > a{
+  position: relative;
+  display: block;
+}
+.fix-list > li > a::after{
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 32px;
+  background: url("../images/icoFloating.png");
+}
+.fix-list > li span{
+  position: relative;
+  display: block;
+}
+.fix-login::after{
+  background-position: 0 0;
+}
+.fix-shop::after{
+  background-position: 0 -32px !important;
+}
+.good-recent{
+  display: inline-block !important;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+.good-recent img{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+}
+.good-recent::after{
+  content: none !important;
+}
+.fix-qa::after{
+  background-position: 0 calc(-32px * 2) !important;
+}
+.fix-talk::after{
+  background-position: 0 calc(-32px * 3) !important;
+}
+.fix-top{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  line-height: 29px;
+  border: 0;
+  cursor: pointer;
+  font-size: 11px;
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
 }

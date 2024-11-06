@@ -823,11 +823,11 @@ window.addEventListener("load", function () {
     });
     tabConArr.forEach(function (item) {
       // console.log(item);
-      item.classList.remove("community-visible-active");
+      item.classList.remove("community-visible-active")
     });
     // 인덱스에 해당하는것만 적용
-    tabBtArr[tabFocusIndex].classList.add("community-bt-active");
-    tabConArr[tabFocusIndex].classList.add("community-visible-active");
+    tabBtArr[tabFocusIndex].classList.add("community-bt-active")
+    tabConArr[tabFocusIndex].classList.add("community-visible-active")
   }
   //   ==========================end
 });

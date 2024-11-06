@@ -1,12 +1,13 @@
 @charset "utf-8";
-.wrap.active{
+.wrap.active {
 padding-top: calc(128px - 61px);
 }
-.header.active{
+.header.active {
   top: -61px;
 }
 
 .header {
+  background-color: #fff;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +16,6 @@ padding-top: calc(128px - 61px);
   border-bottom: 1px solid #eee;
   z-index: 999;
   transition: all 0.2s;
-  background-color: #fff;
 }
 .header-top {
   position: relative;
@@ -421,7 +421,8 @@ padding-top: calc(128px - 61px);
   background-color: transparent;
   line-height: 19px;
 }
-.join-bt:hover , .join-bt.active {
+.join-bt:hover,
+.join-bt.active {
   color: #76bd42;
 }
 .join-bt-icon {
@@ -434,7 +435,7 @@ padding-top: calc(128px - 61px);
   vertical-align: 2px;
   margin-left: 2px;
 }
-.join-bt.active .join-bt-icon{
+.join-bt.active .join-bt-icon {
   background-position: 0px -8px;
 }
 .join-list,
@@ -469,7 +470,7 @@ padding-top: calc(128px - 61px);
   border-bottom: 2px solid rgba(0, 0, 0, 0);
 }
 .join-list > li > a:hover,
-.more-menu-list > li > a:hover{
+.more-menu-list > li > a:hover {
   font-weight: 700;
   color: #333;
   border-bottom: 2px solid #333;
@@ -502,39 +503,42 @@ padding-top: calc(128px - 61px);
   vertical-align: 2px;
 }
 /* 더보기 active기능 */
-.more-menu-bt.active > span{
+.more-menu-bt.active > span {
   visibility: hidden;
 }
-.more-menu-bt::after{
+.more-menu-bt::after {
   content: "접기";
-position: absolute;
-top: 0;
-left: 9px;
-display: inline-block;
-width: 30px;
-height: 10px;
-color: #76bd42;
-display: none;
+  position: absolute;
+  top: 0;
+  left: 9px;
+  display: inline-block;
+  width: 30px;
+  height: 10px;
+  color: #76bd42;
+  display: none;
 }
-.more-menu-bt.active::after{
+.more-menu-bt.active::after {
   display: block;
-
 }
-.more-menu-bt.active .more-menu-icon{
+.more-menu-bt.active .more-menu-icon {
   background-position: 0 -6px;
 }
-/* header-main-right */
-.header-main-right{
+
+/* .header-mian-rigth */
+
+.header-main-right {
   position: relative;
   display: block;
   float: right;
 }
-.search-form{
+
+.search-form {
   position: relative;
   display: block;
   float: left;
 }
-.search-txt{
+
+.search-txt {
   position: relative;
   display: block;
   width: 320px;
@@ -547,25 +551,28 @@ display: none;
   line-height: 40px;
   font-size: 13px;
 }
-.search-txt:focus{
+
+.search-txt:focus {
   background-color: #fff;
   border: 1px solid #76bd42;
   color: #333;
 }
-.search-bt{
+
+.search-bt {
   position: absolute;
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
-  background: url("../images/btnSearch.png")no-repeat;
+  background: url("../images/btnSearch.png") no-repeat;
   cursor: pointer;
   font-size: 0;
   display: block;
   border: 0;
 }
-.bucket{
+
+.bucket {
   position: relative;
   display: block;
   width: 30px;
@@ -575,10 +582,11 @@ display: none;
   margin-left: 25px;
   margin-top: 6px;
 }
-.bucket-count{
+
+.bucket-count {
   position: absolute;
   right: -4px;
-  top: -7px;
+  top: -1px;
   display: block;
   width: 18px;
   height: 18px;

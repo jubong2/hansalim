@@ -11,10 +11,10 @@ window.addEventListener("load", function () {
     // console.log(scy);
     if (scy > 0) {
       header.classList.add("active");
-      wrap.classList.add("active");
+      wrap.classList.add(".active");
     } else {
       header.classList.remove("active");
-      wrap.classList.remove("active");
+      wrap.classList.remove(".active");
     }
   });
   //  펼침목록 보기 기능
@@ -123,13 +123,13 @@ window.addEventListener("load", function () {
       });
     });
   });
-  // 위로 가기 기능
-  const fixTopBt = this.document.querySelector(".fix-top");
-  fixTopBt.addEventListener("click", function () {
+  // 위로가기 기능
+  const fixTopBt = this.document.querySelector(".fix-top")
+  fixTopBt.addEventListener("click",function(){
     window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
+      top : 0,
+      behavior : "smooth",
+    })
+  })
   // ====================end
 });
