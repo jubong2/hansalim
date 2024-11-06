@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
   const header = this.document.querySelector(".header");
-  const wrap = this.document.querySelector(".wrap")
+  const wrap = this.document.querySelector(".wrap");
   //    console.log(header);
   let scy = 0;
   console.log(scy);
@@ -11,10 +11,10 @@ window.addEventListener("load", function () {
     // console.log(scy);
     if (scy > 0) {
       header.classList.add("active");
-      wrap.classList.add("active")
+      wrap.classList.add("active");
     } else {
       header.classList.remove("active");
-      wrap.classList.remove("active")
+      wrap.classList.remove("active");
     }
   });
   //  펼침목록 보기 기능
@@ -85,22 +85,20 @@ window.addEventListener("load", function () {
   const themeList = this.document.querySelector(".theme-list");
   let isMenuOpen = false;
   cateList.addEventListener("mouseleave", function () {
-    // cateList마우스리브 했을때 
+    // cateList마우스리브 했을때
     if (!isMenuOpen) {
-      allMenu.classList.remove("active")
-
+      allMenu.classList.remove("active");
     }
   });
   cateListWrap.addEventListener("mouseleave", function () {
-    // cateListWrap 했을때 
+    // cateListWrap 했을때
     if (!isMenuOpen) {
-      allMenu.classList.remove("active")
-
+      allMenu.classList.remove("active");
     }
   });
-  cateListWrap.addEventListener("mouseenter" ,function(){
-    allMenu.classList.add("active")
-  })
+  cateListWrap.addEventListener("mouseenter", function () {
+    allMenu.classList.add("active");
+  });
   cateList.addEventListener("mouseenter", function () {
     allMenu.classList.add("active");
   });
@@ -118,11 +116,19 @@ window.addEventListener("load", function () {
     item.addEventListener("mouseenter", function () {
       cateDepth2.forEach(function (itemSub, indexSub) {
         // console.log(itemSub);
-        itemSub.style.display = "none"
+        itemSub.style.display = "none";
         if (indexSub === index) {
           itemSub.style.display = "block";
         }
       });
+    });
+  });
+  // 위로 가기 기능
+  const fixTopBt = this.document.querySelector(".fix-top");
+  fixTopBt.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
   });
   // ====================end
